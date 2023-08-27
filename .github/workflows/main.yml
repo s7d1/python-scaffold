@@ -1,24 +1,31 @@
 name: Python application test with Github Actions
-on: [push]
+
+on:
+  push:
+  
 jobs:
-	build:
- 		runs-on: ubuntu-latest
-	 	steps:
-	 	- uses: actions/checkout@v2
-	 	- name: Setup Python 3.10
-	 		uses: actions/setup-python@v1
-			with:
-	 			python-version: 3.10
-		- name: Install dependencies
-	 	  run:	|
-		 		make install
-		- name: Lint with Python
-	 		run:	|
-				make lint
-		- name: Test python
-	 		run:	|
-				make test
-		- name: format Python
-	 		run:	|
-				make format
-		
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup Python 3.10
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.10
+
+    - name: Install dependencies
+      run: |
+        make install
+
+    - name: Lint with Python
+      run: |
+        make lint
+
+    - name: Test python
+      run: |
+        make test
+
+    - name: format Python
+      run: |
+        make format
